@@ -1,0 +1,21 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+  <bean id="h1" class="com.pojo.Hello">
+	<property name="message" value="Good morning !!!"></property>  
+  </bean>
+  
+  <bean  id="h2" class="com.pojo.Hello">
+	<property name="message" value="Good night !!!"></property>  
+  </bean>
+   
+    <bean  id="e1" class="com.pojo.Employee">
+		<constructor-arg name="id" value="1"> </constructor-arg>
+		<constructor-arg name="name" value="Melolo"> </constructor-arg>
+  </bean>
+   
+</beans>

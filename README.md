@@ -1,0 +1,1 @@
+This repository contains working projects for hibernate, spring core, spring AOP. Spring JDBC, spring hibernate
