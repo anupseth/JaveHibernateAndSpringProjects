@@ -1,0 +1,1 @@
+This Project is to demonstarate how to handle exceptions in both spring MVC and Rest controllers in spring.
