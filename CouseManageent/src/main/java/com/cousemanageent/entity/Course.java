@@ -43,6 +43,18 @@ public class Course {
 		this.duration = duration;
 		this.fees = fees;
 	}
+	
+	
+
+	public Course(long id, @Size(min = 3, message = "Minimun name size shud be 3") String name,
+			@Positive(message = "Pleasse enter positive duration in Months") int duration,
+			@PositiveOrZero(message = "Pleasse enter positive fees or 0 as value") int fees) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.duration = duration;
+		this.fees = fees;
+	}
 
 	public long getId() {
 		return id;
