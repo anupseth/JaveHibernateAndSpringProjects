@@ -1,6 +1,8 @@
 package com.cousemanageent.controllers;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -8,16 +10,20 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cousemanageent.entity.Course;
+import com.cousemanageent.entity.CourseStatus;
 import com.cousemanageent.service.CourseService;
 
 @Controller
@@ -31,8 +37,15 @@ public class WebController {
 	@ModelAttribute
 	public void addAttriburesForHome(Model model, HttpSession session) {
 		model.addAttribute("message", "Welcome to Course Management");
-		model.addAttribute("courseStatus", Arrays.asList("Active", "Not Active"));
+		model.addAttribute("courseStatus", Arrays.asList(CourseStatus.ACTIVE, CourseStatus.NOT_ACTIVE));
 		session.setAttribute("courseList", courseService.getAllCourse());
+	}
+	
+	@InitBinder
+	protected void initBinder(WebDataBinder binder) {
+		
+		SimpleDateFormat dataFormat = new SimpleDateFormat("dd/MM/yyyy");
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dataFormat, false));
 	}
 
 	@GetMapping("/")

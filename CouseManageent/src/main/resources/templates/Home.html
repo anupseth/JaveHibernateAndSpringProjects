@@ -27,6 +27,8 @@
 				<th>Name</th>
 				<th>Duration (Months)</th>
 				<th>Fees</th>
+				<th>Inception Date</th>
+				<th>Course Status</th>
 				<th>Delete</th>
 			</tr>
 		</thead>
@@ -36,6 +38,8 @@
 				<td th:text="${course.name}" />
 				<td th:text="${course.duration}" />
 				<td th:text="${course.fees}" />
+				<td th:text="${course.courseInceptionDate}" />
+				<td th:text="${course.courseState}" />
 				<td> <a th:href="@{/deleteCourse/{id}(id = ${course.id})}"> Delete </a>  </td> 
 			</tr>
 		</tbody>

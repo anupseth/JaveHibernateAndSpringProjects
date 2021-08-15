@@ -3,10 +3,10 @@
 <body>
 	<form action="#" th:action="@{/addCourse}" th:object="${course}"
 		method="post">
-		<table style="width:100%">
+		<table style="width: 100%">
 			<tr style="display: none;">
 				<td>Name:</td>
-				<td><input type="text" th:field="*{id}" /></td>
+				<td><input type="number" th:field="*{id}" /></td>
 				<td th:if="${#fields.hasErrors('id')}" th:errors="*{id}"
 					style="color: red;">ID Error</td>
 			</tr>
@@ -18,21 +18,75 @@
 			</tr>
 			<tr>
 				<td>Duration:</td>
-				<td><input type="text" th:field="*{duration}"/></td>
+				<td><input type="number" th:field="*{duration}" /></td>
 				<td th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}"
 					style="color: red;">Age Error</td>
+			</tr>
 			<tr>
 				<td>Fees:</td>
-                    <td><input type="text" th:field="*{fees}" /></td>
-                    <td th:if="${#fields.hasErrors('fees')}"
-					th:errors="*{fees}" style="color: red;">Age Error</td>
-                </tr>
-                </tr>
+				<td><input type="number" th:field="*{fees}" /></td>
+				<td th:if="${#fields.hasErrors('fees')}" th:errors="*{fees}"
+					style="color: red;">Age Error</td>
+			</tr>
 			
-                <tr>
-                    <td align="center"><button type="submit">Submit</button></td>
-                </tr>
-            </table>
-        </form>
-    </body>
+			<!-- <tr>
+				<td>Fees:</td>
+				<td><input type="text" th:field="*{courseState}" /></td>
+				<td th:if="${#fields.hasErrors('courseState')}" th:errors="*{courseState}"
+					style="color: red;">courseState Error</td>
+			</tr> -->
+			
+		<!-- 	<tr>
+				<td>Course State:</td>
+				
+				
+				<td>
+					<ul>
+						<li th:each="course: ${courseStatus}">
+							  <input type="radio" id="${course}" name="${course}" value="${course}" th:field="*{courseState}">
+                			  <label for="${course}" th:text="${course}">Option1</label>
+						</li>
+					</ul>
+				</td>
+				
+				
+				<td th:if="
+							${#fields.hasErrors('courseState')}"
+					th:errors="*{courseState}" style="color: red;">courseState
+					Error</td>
+			</tr> -->
+			
+				<tr>
+				<td>Course State:</td>
+				
+				
+				<td>
+				
+				<select name="*{courseState}">
+						<option
+							th:each="colorOpt : ${T(com.cousemanageent.entity.CourseStatus).values()}"
+							th:value="${colorOpt}" th:text="${colorOpt}"></option>
+				</select></td>
+				
+				
+				<td th:if="
+							${#fields.hasErrors('courseState')}"
+					th:errors="*{courseState}" style="color: red;">courseState
+					Error</td>
+			</tr>
+			
+			
+			<tr>
+				<td>Course Inception Date (dd/MM/yyyy):</td>
+				<td><input type="text" th:field="*{courseInceptionDate}" /></td>
+				<td th:if="${#fields.hasErrors('courseInceptionDate')}" th:errors="*{courseInceptionDate}"
+					style="color: red;">Date Error</td>
+			</tr>
+
+			<tr>
+				<td align="center"><button type="submit">Submit</button></td>
+			</tr>
+		</table>
+	</form>
+</body>
 </html>

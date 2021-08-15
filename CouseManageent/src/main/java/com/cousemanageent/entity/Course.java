@@ -2,9 +2,13 @@ package com.cousemanageent.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
@@ -26,11 +30,12 @@ public class Course {
 	@PositiveOrZero(message = "Pleasse enter positive fees or 0 as value")
 	private int fees;
 	
+	@Enumerated(EnumType.STRING)
+	private CourseStatus courseState;
 	
-//	private String courseState;
-//	
-//	
-//	private Date courseinceptionDate;
+	@Past
+	@Column()
+	private Date courseInceptionDate;
 	
 	public Course() {
 		// TODO Auto-generated constructor stub
@@ -89,45 +94,49 @@ public class Course {
 		this.fees = fees;
 	}
 
-	@Override
-	public String toString() {
-		return "Course [id=" + id + ", name=" + name + ", duration=" + duration + ", fees=" + fees + "]";
-	}
-
-//	public String getCourseState() {
-//		return courseState;
-//	}
-//
-//	public void setCourseState(String courseState) {
-//		this.courseState = courseState;
-//	}
-//
-//	public Date getCourseinceptionDate() {
-//		return courseinceptionDate;
-//	}
-//
-//	public void setCourseinceptionDate(Date courseinceptionDate) {
-//		this.courseinceptionDate = courseinceptionDate;
-//	}
-//
-//	public Course(@Size(min = 3, message = "Minimun name size shud be 3") String name,
-//			@Positive(message = "Pleasse enter positive duration in Months") int duration,
-//			@PositiveOrZero(message = "Pleasse enter positive fees or 0 as value") int fees, String courseState,
-//			Date courseinceptionDate) {
-//		super();
-//		this.name = name;
-//		this.duration = duration;
-//		this.fees = fees;
-//		this.courseState = courseState;
-//		this.courseinceptionDate = courseinceptionDate;
-//	}
-//
 //	@Override
 //	public String toString() {
-//		return "Course [id=" + id + ", name=" + name + ", duration=" + duration + ", fees=" + fees + ", courseState="
-//				+ courseState + ", courseinceptionDate=" + courseinceptionDate + "]";
+//		return "Course [id=" + id + ", name=" + name + ", duration=" + duration + ", fees=" + fees + "]";
 //	}
+
 	
-	
+
+
+
+	public CourseStatus getCourseState() {
+		return courseState;
+	}
+
+	public void setCourseState(CourseStatus courseState) {
+		this.courseState = courseState;
+	}
+
+	public Course(long id, @Size(min = 3, message = "Minimun name size shud be 3") String name,
+			@Positive(message = "Pleasse enter positive duration in Months") int duration,
+			@PositiveOrZero(message = "Pleasse enter positive fees or 0 as value") int fees, CourseStatus courseState,
+			Date courseinceptionDate) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.duration = duration;
+		this.fees = fees;
+		this.courseState = courseState;
+		this.courseInceptionDate = courseinceptionDate;
+	}
+
+	@Override
+	public String toString() {
+		return "Course [id=" + id + ", name=" + name + ", duration=" + duration + ", fees=" + fees + ", courseState="
+				+ courseState + ", courseinceptionDate=" + courseInceptionDate + "]";
+	}
+
+	public Date getCourseInceptionDate() {
+		return courseInceptionDate;
+	}
+
+	public void setCourseInceptionDate(Date courseInceptionDate) {
+		this.courseInceptionDate = courseInceptionDate;
+	}
+
 	
 }
