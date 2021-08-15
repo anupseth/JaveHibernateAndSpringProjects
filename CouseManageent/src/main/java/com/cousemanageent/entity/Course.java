@@ -2,12 +2,15 @@ package com.cousemanageent.entity;
 
 import java.util.Date;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
@@ -34,7 +37,8 @@ public class Course {
 	private CourseStatus courseState;
 	
 	@Past
-	@Column()
+	@Basic
+	@Temporal(TemporalType.DATE)
 	private Date courseInceptionDate;
 	
 	public Course() {

@@ -1,11 +1,13 @@
 package com.cousemanageent.service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -50,7 +52,8 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	public List<Course> getAllCourse() {
-		List<Course> allCourses = courseRepo.findAll();
+		Sort sort = Sort.by(Sort.Direction.DESC, "name");
+		List<Course> allCourses = courseRepo.findAll(sort);
 		return allCourses;
 	}
 
