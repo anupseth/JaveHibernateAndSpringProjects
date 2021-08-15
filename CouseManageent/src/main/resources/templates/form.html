@@ -4,6 +4,12 @@
 	<form action="#" th:action="@{/addCourse}" th:object="${course}"
 		method="post">
 		<table style="width:100%">
+			<tr style="display: none;">
+				<td>Name:</td>
+				<td><input type="text" th:field="*{id}" /></td>
+				<td th:if="${#fields.hasErrors('id')}" th:errors="*{id}"
+					style="color: red;">ID Error</td>
+			</tr>
 			<tr>
 				<td>Name:</td>
 				<td><input type="text" th:field="*{name}" /></td>

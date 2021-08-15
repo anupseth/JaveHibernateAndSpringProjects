@@ -23,8 +23,15 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	public Course saveCourse(Course course) {
-		 Course save = courseRepo.save(course);
-		 return save;
+		Course coursefromrepo = null;
+		Course save = null;
+		logger.info(" ->>>>>>>>>>>>>>>>> Course Id :" + course.getId());
+		if (course.getId() > 0 && courseRepo.existsById(course.getId())) {
+			coursefromrepo = courseRepo.getById(course.getId());
+			coursefromrepo = course;
+		}
+		save = courseRepo.save(course);
+		return save;
 	}
 
 	@Override

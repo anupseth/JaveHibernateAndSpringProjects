@@ -27,14 +27,16 @@
 				<th>Name</th>
 				<th>Duration (Months)</th>
 				<th>Fees</th>
+				<th>Delete</th>
 			</tr>
 		</thead>
 		<tbody align="center">
 			<tr th:each="course: ${session.courseList}">
-				<td th:text="${course.id}" />
+				<td> <a th:href="@{/updateCourse/{id}(id = ${course.id})}" th:text="${course.id}"> Delete </a>  </td> 
 				<td th:text="${course.name}" />
 				<td th:text="${course.duration}" />
 				<td th:text="${course.fees}" />
+				<td> <a th:href="@{/deleteCourse/{id}(id = ${course.id})}"> Delete </a>  </td> 
 			</tr>
 		</tbody>
 	</table>

@@ -1,5 +1,7 @@
 package com.cousemanageent.entity;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -24,7 +26,7 @@ public class Course {
 	@PositiveOrZero(message = "Pleasse enter positive fees or 0 as value")
 	private int fees;
 	
-//	
+	
 //	private String courseState;
 //	
 //	
