@@ -1,5 +1,6 @@
 package com.cousemanageent;
 
+import java.util.Date;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
@@ -10,6 +11,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cousemanageent.entity.Course;
+import com.cousemanageent.entity.CourseStatus;
 import com.cousemanageent.service.CourseService;
 
 @SpringBootTest()
@@ -20,7 +22,7 @@ class CourseServiceIntegrationTest {
 	@Autowired
 	private CourseService courseService;
 	
-	private Course course = new Course("TestCourse1", 4, 5000);
+	private Course course = new Course("TC1", 5, 1000, new Date(), CourseStatus.ACTIVE);
 	
 	@Test
 	public void saveCourse() {

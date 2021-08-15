@@ -42,30 +42,9 @@ public class Course {
 	private Date courseInceptionDate;
 	
 	public Course() {
-		// TODO Auto-generated constructor stub
 	}
 
-	public Course(@Size(min = 3, message = "Minimun name size shud be 3") String name,
-			@Positive(message = "Pleasse enter positive duration in Months") int duration,
-			@PositiveOrZero(message = "Pleasse enter positive fees or 0 as value") int fees) {
-		super();
-		this.name = name;
-		this.duration = duration;
-		this.fees = fees;
-	}
 	
-	
-
-	public Course(long id, @Size(min = 3, message = "Minimun name size shud be 3") String name,
-			@Positive(message = "Pleasse enter positive duration in Months") int duration,
-			@PositiveOrZero(message = "Pleasse enter positive fees or 0 as value") int fees) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.duration = duration;
-		this.fees = fees;
-	}
-
 	public long getId() {
 		return id;
 	}
@@ -98,15 +77,6 @@ public class Course {
 		this.fees = fees;
 	}
 
-//	@Override
-//	public String toString() {
-//		return "Course [id=" + id + ", name=" + name + ", duration=" + duration + ", fees=" + fees + "]";
-//	}
-
-	
-
-
-
 	public CourseStatus getCourseState() {
 		return courseState;
 	}
@@ -115,18 +85,6 @@ public class Course {
 		this.courseState = courseState;
 	}
 
-	public Course(long id, @Size(min = 3, message = "Minimun name size shud be 3") String name,
-			@Positive(message = "Pleasse enter positive duration in Months") int duration,
-			@PositiveOrZero(message = "Pleasse enter positive fees or 0 as value") int fees, CourseStatus courseState,
-			Date courseinceptionDate) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.duration = duration;
-		this.fees = fees;
-		this.courseState = courseState;
-		this.courseInceptionDate = courseinceptionDate;
-	}
 
 	@Override
 	public String toString() {
@@ -142,5 +100,34 @@ public class Course {
 		this.courseInceptionDate = courseInceptionDate;
 	}
 
+
+	public Course(long id, @Size(min = 3, message = "Minimun name size shud be 3") String name,
+			@Positive(message = "Pleasse enter positive duration in Months") int duration,
+			@PositiveOrZero(message = "Pleasse enter positive fees or 0 as value") int fees, @Past Date courseInceptionDate,
+			CourseStatus courseState) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.duration = duration;
+		this.fees = fees;
+		this.courseState = courseState;
+		this.courseInceptionDate = courseInceptionDate;
+	}
+
+
+	public Course(@Size(min = 3, message = "Minimun name size shud be 3") String name,
+			@Positive(message = "Pleasse enter positive duration in Months") int duration,
+			@PositiveOrZero(message = "Pleasse enter positive fees or 0 as value") int fees, @Past Date courseInceptionDate,
+			CourseStatus courseState) {
+		super();
+		this.name = name;
+		this.duration = duration;
+		this.fees = fees;
+		this.courseState = courseState;
+		this.courseInceptionDate = courseInceptionDate;
+	}
+
+
+	
 	
 }

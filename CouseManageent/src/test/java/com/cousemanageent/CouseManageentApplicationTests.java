@@ -9,10 +9,10 @@ import com.sun.tools.javac.util.Assert;
 @SpringBootTest
 class CouseManageentApplicationTests {
 
-	@Test
-	void contextLoads() {
-		
-	}
+//	@Test
+//	void contextLoads() {
+//		
+//	}
 	
 
 }
