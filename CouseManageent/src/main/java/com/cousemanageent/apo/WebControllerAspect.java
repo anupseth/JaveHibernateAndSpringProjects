@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-public class CourseAspect {
+public class WebControllerAspect {
 	
 	Logger logger = LoggerFactory.getLogger(getClass());
 	
@@ -25,12 +25,12 @@ public class CourseAspect {
 //		logger.info(Arrays.toString(joinPoint.getArgs()));
 //	}
 
-	@Around(value = "execution(* com.cousemanageent.service.CourseServiceImpl.*(..))")
+	@Around(value = "execution(* com.cousemanageent.controllers.WebController.*(..))")
 	public Object before(ProceedingJoinPoint proJoinPoint) throws Throwable {
 		logger.info("Enter  ["+ proJoinPoint.getTarget().getClass().getName()  + " =>  " + proJoinPoint.getSignature().getName()+ "]");
 		logger.info(Arrays.toString(proJoinPoint.getArgs()));
 		Object proceed = proJoinPoint.proceed();
-		logger.info("Exit  ["+proJoinPoint.getTarget().getClass().getName()  + " =>  " + proJoinPoint.getSignature().getName()+ "]");
+		logger.info("Exit  ["+ proJoinPoint.getTarget().getClass().getName()  + " =>  " + proJoinPoint.getSignature().getName()+ "]");
 		return proceed;
 	}
 	

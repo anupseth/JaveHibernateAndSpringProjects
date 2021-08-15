@@ -39,7 +39,7 @@ class CourseServiceIntegrationTest {
 	@Test
 	public void deleteCourse() {
 		
-		courseService.deleteCourse(1003l);
+		courseService.deleteCourse(103l);
 		Assertions.assertNull(courseService.retreiveCourse(1003l));
 	}
 	

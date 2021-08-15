@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1 th:text="${message}" align="center">Welcome</h1>
+
+	<hr>
+
+	<ul>
+		<li><a href="/addCourse"> Add Course to Academy</a></li>
+	</ul>
+
+	<hr>
+
+	<h3 align="center">Course List</h3>
+
+
+
+	<table style="width:100%">
+		<thead align="center">
+			<tr>
+				<th>Course ID</th>
+				<th>Name</th>
+				<th>Duration (Months)</th>
+				<th>Fees</th>
+			</tr>
+		</thead>
+		<tbody align="center">
+			<tr th:each="course: ${session.courseList}">
+				<td th:text="${course.id}" />
+				<td th:text="${course.name}" />
+				<td th:text="${course.duration}" />
+				<td th:text="${course.fees}" />
+			</tr>
+		</tbody>
+	</table>
+
+
+</body>
+</html>
