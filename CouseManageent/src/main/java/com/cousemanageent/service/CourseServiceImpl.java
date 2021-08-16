@@ -1,6 +1,5 @@
 package com.cousemanageent.service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,7 +31,7 @@ public class CourseServiceImpl implements CourseService {
 			coursefromrepo = courseRepo.getById(course.getId());
 			coursefromrepo = course;
 		}
-		save = courseRepo.save(course);
+		save = courseRepo.save(coursefromrepo);
 		return save;
 	}
 
@@ -56,5 +55,11 @@ public class CourseServiceImpl implements CourseService {
 		List<Course> allCourses = courseRepo.findAll(sort);
 		return allCourses;
 	}
+
+	@Override
+	public List<Course> getByName(String name) {
+		return courseRepo.findByName(name);
+	}
+
 
 }

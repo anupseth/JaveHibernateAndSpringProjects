@@ -14,5 +14,5 @@ public interface CourseService {
 	
 	public List<Course> getAllCourse();
 	
-
+	public List<Course> getByName(String name);
 }

@@ -89,5 +89,13 @@ public class WebController {
 		model.setViewName("form");
 		return model;
 	}
+	
+	
+	@GetMapping("/searchCourses")
+	public String searchCourses(Course course) {
+		course.setFees(2000);
+		course.setDuration(3);
+		return "SearchPages/SearchCourse";
+	}
 
 }

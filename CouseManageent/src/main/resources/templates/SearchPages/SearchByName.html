@@ -5,21 +5,17 @@
 <title>Insert title here</title>
 </head>
 <body>
+		<h1 align="center">Search By Name</h1>
+		<hr>
 
+	<form action="/searchByName" method="post">
 
-	<h1 th:text="${message}" align="center">Welcome</h1>
-
-	<hr>
-
-	<ul>
-		<li><a href="/addCourse"> Add Course to Academy</a></li>
-		<li><a href="/searchCourses"> Search courses</a></li>
-	</ul>
-
-	<hr>
-
-	<h3 align="center">Course List</h3>
-
+		Name : <input type="text" name="name"> <br /> 
+		<br /> 
+		<br /> 
+		<input
+			type="submit" value="Search">
+	</form>
 
 
 	<table style="width:100%">
@@ -31,22 +27,20 @@
 				<th>Fees</th>
 				<th>Inception Date</th>
 				<th>Course Status</th>
-				<th>Delete</th>
 			</tr>
 		</thead>
 		<tbody align="center">
-			<tr th:each="course: ${session.courseList}">
-				<td> <a th:href="@{/updateCourse/{id}(id = ${course.id})}" th:text="${course.id}"> Delete </a>  </td> 
+			<tr th:each="course: ${session.searchByNameList}">
+				<td th:text="${course.id}" />
 				<td th:text="${course.name}" />
 				<td th:text="${course.duration}" />
 				<td th:text="${course.fees}" />
 				<td th:text="${course.courseInceptionDate}" />
 				<td th:text="${course.courseState}" />
-				<td> <a th:href="@{/deleteCourse/{id}(id = ${course.id})}"> Delete </a>  </td> 
 			</tr>
 		</tbody>
 	</table>
-
-
+	
+	
 </body>
 </html>
