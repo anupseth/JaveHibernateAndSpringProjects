@@ -3,29 +3,53 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<link th:rel="stylesheet"
+	th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} " />
+
 </head>
 <body>
-		<h1 align="center">Search By Date</h1>
-		<hr>
 
-	<form action="/searchByDateRange" method="post" style="width:100%">
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+		<div class="container">
+			<a class="navbar-brand" href="/">Welcome to Course Management</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active"><a class="nav-link" href="/">Home
+							<span class="sr-only">(current)</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">About</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Services</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">Contact</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 
-		From Date (yyyy-MM-dd) : <input type="date" name="fromDate"> <br /> 
-		<br /> 
-		<br /> 
-		To Date (yyyy-MM-dd) : <input type="date" name="toDate"> <br /> 
-		<br /> 
-		<br /> 
-		<input
-			type="submit" value="Search">
+	<br />
+	<br />
+
+	<form action="/searchByDateRange" method="post" style="width: 100%">
+
+		From Date (yyyy-MM-dd) : <input type="date" name="fromDate"> <br />
+		<br /> <br /> To Date (yyyy-MM-dd) : <input type="date"
+			name="toDate"> <br /> <br /> <br /> <input type="submit"
+			value="Search">
 	</form>
 
-<br>
+	<br>
 
- 	<p th:text="${session.errMsgDates}" th:unless="${session == null}">[...]</p>
+	<p th:text="${session.errMsgDates}" th:unless="${session == null}">[...]</p>
 
 
-	<table style="width:100%">
+	<table style="width: 100%">
 		<thead align="center">
 			<tr>
 				<th>Course ID</th>
@@ -47,7 +71,10 @@
 			</tr>
 		</tbody>
 	</table>
-	
-	
+
+	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
 </body>
 </html>

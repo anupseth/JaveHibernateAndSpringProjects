@@ -1,6 +1,40 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link th:rel="stylesheet"
+	th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} " />
+
+</head>
 <body>
+
+
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+		<div class="container">
+			<a class="navbar-brand" href="/">Welcome to Course Management</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active"><a class="nav-link" href="/">Home
+							<span class="sr-only">(current)</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">About</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Services</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">Contact</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<br />
+	<br />
 	<form action="#" th:action="@{/addCourse}" th:object="${course}"
 		method="post">
 		<table style="width: 100%">
@@ -28,15 +62,15 @@
 				<td th:if="${#fields.hasErrors('fees')}" th:errors="*{fees}"
 					style="color: red;">Age Error</td>
 			</tr>
-			
+
 			<!-- <tr>
 				<td>Fees:</td>
 				<td><input type="text" th:field="*{courseState}" /></td>
 				<td th:if="${#fields.hasErrors('courseState')}" th:errors="*{courseState}"
 					style="color: red;">courseState Error</td>
 			</tr> -->
-			
-		<!-- 	<tr>
+
+			<!-- 	<tr>
 				<td>Course State:</td>
 				
 				
@@ -55,8 +89,8 @@
 					th:errors="*{courseState}" style="color: red;">courseState
 					Error</td>
 			</tr> -->
-			
-				<tr>
+
+		<tr>
 				<td>Course State:</td>
 				
 				
@@ -74,13 +108,14 @@
 					th:errors="*{courseState}" style="color: red;">courseState
 					Error</td>
 			</tr>
-			
-			
+
+
 			<tr>
 				<td>Course Inception Date (dd/MM/yyyy):</td>
 				<td><input type="text" th:field="*{courseInceptionDate}" /></td>
-				<td th:if="${#fields.hasErrors('courseInceptionDate')}" th:errors="*{courseInceptionDate}"
-					style="color: red;">Date Error</td>
+				<td th:if="${#fields.hasErrors('courseInceptionDate')}"
+					th:errors="*{courseInceptionDate}" style="color: red;">Date
+					Error</td>
 			</tr>
 
 			<tr>
@@ -88,5 +123,10 @@
 			</tr>
 		</table>
 	</form>
+
+	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
 </body>
 </html>

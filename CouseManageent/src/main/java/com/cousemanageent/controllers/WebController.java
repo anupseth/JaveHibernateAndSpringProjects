@@ -57,6 +57,7 @@ public class WebController {
 	public String showCourseForm(Course course) {
 		course.setFees(2000);
 		course.setDuration(3);
+		course.setCourseState(CourseStatus.ACTIVE);
 		return "form";
 	}
 
@@ -66,6 +67,8 @@ public class WebController {
 		if (bindingResult.hasErrors()) {
 			return "form";
 		}
+		
+		//course.setCourseState(CourseStatus.ACTIVE);
 
 		courseService.saveCourse(course);
 		session.setAttribute("courseList", courseService.getAllCourse());

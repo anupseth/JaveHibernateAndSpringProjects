@@ -17,9 +17,9 @@ import com.cousemanageent.repository.CourseRepository;
 @Service
 @Transactional
 public class CourseServiceImpl implements CourseService {
-	
+
 	Logger logger = LoggerFactory.getLogger(getClass());
-	
+
 	@Autowired
 	private CourseRepository courseRepo;
 
@@ -31,18 +31,20 @@ public class CourseServiceImpl implements CourseService {
 		if (course.getId() > 0 && courseRepo.existsById(course.getId())) {
 			coursefromrepo = courseRepo.getById(course.getId());
 			coursefromrepo = course;
+			return courseRepo.save(coursefromrepo);
+		} else {
+			return courseRepo.save(course);
 		}
-		save = courseRepo.save(coursefromrepo);
-		return save;
+
 	}
 
 	@Override
 	public Course retreiveCourse(long id) {
 		Optional<Course> course = courseRepo.findById(id);
-		if(course.isPresent()) {
+		if (course.isPresent()) {
 			return course.get();
 		}
-		 return null;
+		return null;
 	}
 
 	@Override
@@ -76,6 +78,5 @@ public class CourseServiceImpl implements CourseService {
 	public List<Course> getByDuration(int startDuration, int endDuration) {
 		return courseRepo.findByDeration(startDuration, endDuration);
 	}
-
 
 }
