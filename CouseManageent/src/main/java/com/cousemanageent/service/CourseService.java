@@ -1,5 +1,6 @@
 package com.cousemanageent.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.cousemanageent.entity.Course;
@@ -15,4 +16,6 @@ public interface CourseService {
 	public List<Course> getAllCourse();
 	
 	public List<Course> getByName(String name);
+	
+	public List<Course> getByDate(Date fromDate, Date toDate);
 }

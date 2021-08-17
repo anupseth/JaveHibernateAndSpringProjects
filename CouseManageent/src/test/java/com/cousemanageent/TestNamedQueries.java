@@ -1,5 +1,8 @@
 package com.cousemanageent;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
@@ -22,12 +25,46 @@ class TestNamedQueries {
 	
 	
 	@Test
-	public void testNamedQuery() {
+	public void testNamedQueryByName() {
 		List<Course> findByName = courseRepository.findByName("step");
 		Assertions.assertEquals(3, findByName.size());
 	}
 	
 
 	
-
+	@Test
+	public void testNamedQueryByDate() {
+//		String fromDate="2017-01-01";  
+//		String toDate="2020-01-01";  
+//		Date dateFrom = null;
+//		Date dateTo = null;
+//	    try {
+//	    	dateFrom =new SimpleDateFormat("yyyy-MM-dd").parse(fromDate);
+//	    	dateTo =new SimpleDateFormat("yyyy-MM-dd").parse(toDate);
+//	    	System.out.println("************** DATES *********************");
+//	    	System.out.println(dateFrom.toString());
+//	    	System.out.println(dateTo.toString());
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}  
+	    
+		String fromDate="01-01-2017";  
+		String toDate="01-01-2020";  
+		Date dateFrom = null;
+		Date dateTo = null;
+	    try {
+	    	dateFrom =new SimpleDateFormat("dd-MM-yyyy").parse(fromDate);
+	    	dateTo =new SimpleDateFormat("dd-MM-yyyy").parse(toDate);
+	    	System.out.println("************** DATES *********************");
+	    	System.out.println(dateFrom.toString());
+	    	System.out.println(dateTo.toString());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}  
+		
+		List<Course> findByName = courseRepository.findByDate(dateFrom,dateTo);
+		System.out.println("*****************************************");
+		System.out.println(findByName);
+		Assertions.assertEquals(2, findByName.size());
+	}
 }

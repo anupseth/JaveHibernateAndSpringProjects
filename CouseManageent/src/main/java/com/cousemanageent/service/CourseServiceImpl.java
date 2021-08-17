@@ -1,5 +1,6 @@
 package com.cousemanageent.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,6 +60,11 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public List<Course> getByName(String name) {
 		return courseRepo.findByName(name);
+	}
+
+	@Override
+	public List<Course> getByDate(Date fromDate, Date toDate) {
+		return courseRepo.findByDate(fromDate, toDate);
 	}
 
 

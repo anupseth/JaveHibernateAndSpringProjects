@@ -1,20 +1,18 @@
 package com.cousemanageent;
 
+import java.util.Date;
+import java.util.List;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
 
 import com.cousemanageent.entity.Course;
+import com.cousemanageent.entity.CourseStatus;
 import com.cousemanageent.service.CourseService;
-import org.mockito.*;
-import org.mockito.junit.MockitoJUnitRunner;
 @SpringBootTest()
 @Transactional
 @Sql({"/TestEnv.sql"})
@@ -24,7 +22,7 @@ class CourseServiceTest {
 	CourseService courseService;
 	
 	
-	private Course course = new Course("TestCourse1", 4, 5000);
+	private Course course = new Course("TC1", 5, 5500,new Date(), CourseStatus.ACTIVE);
 	
 	@Test
 	public void saveCourse() {

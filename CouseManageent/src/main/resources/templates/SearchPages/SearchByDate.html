@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+		<h1 align="center">Search By Date</h1>
+		<hr>
+
+	<form action="/searchByDateRange" method="post" style="width:100%">
+
+		From Date (yyyy-MM-dd) : <input type="date" name="fromDate"> <br /> 
+		<br /> 
+		<br /> 
+		To Date (yyyy-MM-dd) : <input type="date" name="toDate"> <br /> 
+		<br /> 
+		<br /> 
+		<input
+			type="submit" value="Search">
+	</form>
+
+<br>
+
+ 	<p th:text="${session.errMsgDates}" th:unless="${session == null}">[...]</p>
+
+
+	<table style="width:100%">
+		<thead align="center">
+			<tr>
+				<th>Course ID</th>
+				<th>Name</th>
+				<th>Duration (Months)</th>
+				<th>Fees</th>
+				<th>Inception Date</th>
+				<th>Course Status</th>
+			</tr>
+		</thead>
+		<tbody align="center">
+			<tr th:each="course: ${session.searchByDateList}">
+				<td th:text="${course.id}" />
+				<td th:text="${course.name}" />
+				<td th:text="${course.duration}" />
+				<td th:text="${course.fees}" />
+				<td th:text="${course.courseInceptionDate}" />
+				<td th:text="${course.courseState}" />
+			</tr>
+		</tbody>
+	</table>
+	
+	
+</body>
+</html>
