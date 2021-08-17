@@ -23,9 +23,10 @@
 					<li class="nav-item active"><a class="nav-link" href="/">Home
 							<span class="sr-only">(current)</span>
 					</a></li>
-					<li class="nav-item"><a class="nav-link" href="/addCourse">Add Course</a></li>
-					<li class="nav-item"><a class="nav-link" href="/searchCourses">Search Course</a>
-					</li>
+					<li class="nav-item"><a class="nav-link" href="/addCourse">Add
+							Course</a></li>
+					<li class="nav-item"><a class="nav-link" href="/searchCourses">Search
+							Course</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Contact</a>
 					</li>
 				</ul>
@@ -63,46 +64,21 @@
 					style="color: red;">Age Error</td>
 			</tr>
 
-			<!-- <tr>
-				<td>Fees:</td>
-				<td><input type="text" th:field="*{courseState}" /></td>
-				<td th:if="${#fields.hasErrors('courseState')}" th:errors="*{courseState}"
-					style="color: red;">courseState Error</td>
-			</tr> -->
-
-			<!-- 	<tr>
+			<tr>
 				<td>Course State:</td>
-				
-				
-				<td>
-					<ul>
-						<li th:each="course: ${courseStatus}">
-							  <input type="radio" id="${course}" name="${course}" value="${course}" th:field="*{courseState}">
-                			  <label for="${course}" th:text="${course}">Option1</label>
-						</li>
-					</ul>
-				</td>
-				
-				
-				<td th:if="
-							${#fields.hasErrors('courseState')}"
-					th:errors="*{courseState}" style="color: red;">courseState
-					Error</td>
-			</tr> -->
 
-		<tr>
-				<td>Course State:</td>
-				
-				
+
 				<td>
-				
-				<select name="*{courseState}">
-						<option
-							th:each="colorOpt : ${T(com.cousemanageent.entity.CourseStatus).values()}"
-							th:value="${colorOpt}" th:text="${colorOpt}"></option>
-				</select></td>
-				
-				
+
+					<div
+						th:each="model : ${T(com.cousemanageent.entity.CourseStatus).values()}">
+						<div class="custom-control custom-radio custom-control-inline">
+							<input type="radio" th:field="*{courseState}" th:value="${model}"
+								class="custom-control-input"> <label
+								class="custom-control-label"
+								th:for="${#ids.prev('courseState')}" th:text="${model}">model</label>
+						</div>
+					</div>
 				<td th:if="
 							${#fields.hasErrors('courseState')}"
 					th:errors="*{courseState}" style="color: red;">courseState
