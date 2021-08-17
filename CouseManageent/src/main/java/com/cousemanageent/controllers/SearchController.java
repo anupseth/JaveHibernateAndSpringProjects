@@ -32,6 +32,8 @@ public class SearchController implements WebMvcConfigurer {
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/results").setViewName("SearchPages/SearchByName");
 		registry.addViewController("/resultsByDate").setViewName("SearchPages/SearchByDate");
+		registry.addViewController("/resultsByFees").setViewName("SearchPages/SearchByFees");
+		registry.addViewController("/resultsByDuration").setViewName("SearchPages/SearchByDuration");
 	}
 
 	@Autowired
@@ -105,5 +107,66 @@ public class SearchController implements WebMvcConfigurer {
 		
 		return "redirect:/resultsByDate";
 	}
+	
+	
+	@GetMapping("/searchByFeesRange")
+	public String searchByFees() {
+		return "SearchPages/SearchByFees";
+	}
+
+	
+	@PostMapping("/searchByFeesRange")
+	public String searchByFeesPost(HttpServletRequest reuest, HttpSession session) {
+		
+		List<Course> byFees = null;
+		session.setAttribute("errMsgFees", "");
+		String fromFees = reuest.getParameter("fromFees");
+		String toFees = reuest.getParameter("toFees");
+		
+		try {
+			
+			byFees =  courseService.getByFees(Integer.parseInt(fromFees), Integer.parseInt(toFees));
+			
+		}catch(Exception ex) {
+			
+			session.setAttribute("errMsgFees", "Please enter Fees as Number");
+			return "SearchByFees";
+		}
+		
+		session.setAttribute("searchByFeesList", byFees);
+		
+		return "redirect:/resultsByFees";
+	}
+	
+	
+	@GetMapping("/searchByDurationRange")
+	public String searchByDuration() {
+		return "SearchPages/SearchByDuration";
+	}
+
+	
+	@PostMapping("/searchByDurationRange")
+	public String searchByDurationPost(HttpServletRequest reuest, HttpSession session) {
+		
+		List<Course> byDuration = null;
+		session.setAttribute("errMsgDuration", "");
+		String fromDuration = reuest.getParameter("fromDuration");
+		String toDuration = reuest.getParameter("toDuration");
+		
+		try {
+			
+			byDuration =  courseService.getByDuration(Integer.parseInt(fromDuration), Integer.parseInt(toDuration));
+			
+		}catch(Exception ex) {
+			
+			session.setAttribute("errMsgDuration", "Please enter Duration as Number");
+			return "SearchByDuration";
+		}
+		
+		session.setAttribute("searchByDurationList", byDuration);
+		
+		return "redirect:/resultsByDuration";
+	}
+
 
 }

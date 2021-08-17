@@ -18,8 +18,7 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
 			+ "c.courseInceptionDate < ?2")
 	List<Course> findByDate(Date dateFrom, Date dateTo);
 	
-	@Query("Select c from Course c where c.fees > 1 and "
-			+ "c.fees < 20")
+	@Query("Select c from Course c where c.fees BETWEEN ?1 AND ?2")
 	List<Course> findByFees(int startFees, int endFees);
 	
 	
