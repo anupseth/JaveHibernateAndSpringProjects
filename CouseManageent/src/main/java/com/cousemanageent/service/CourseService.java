@@ -18,4 +18,8 @@ public interface CourseService {
 	public List<Course> getByName(String name);
 	
 	public List<Course> getByDate(Date fromDate, Date toDate);
+	
+	public List<Course> getByFees(int startFees, int endFees);
+	
+	public List<Course> getByDuration(int startDuration, int endDuration);
 }

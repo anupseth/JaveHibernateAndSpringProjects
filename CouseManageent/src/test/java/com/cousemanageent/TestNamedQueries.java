@@ -29,7 +29,6 @@ class TestNamedQueries {
 		List<Course> findByName = courseRepository.findByName("step");
 		Assertions.assertEquals(3, findByName.size());
 	}
-	
 
 	
 	@Test
@@ -67,4 +66,18 @@ class TestNamedQueries {
 		System.out.println(findByName);
 		Assertions.assertEquals(2, findByName.size());
 	}
+	
+	@Test
+	public void testNamedQueryByFees() {
+		List<Course> findByName = courseRepository.findByFees(4000, 8000);
+		Assertions.assertEquals(1, findByName.size());
+	}
+	
+	@Test
+	public void testNamedQueryByDuration() {
+		List<Course> findByName = courseRepository.findByDeration(5,13);
+		Assertions.assertEquals(2, findByName.size());
+	}
+	
+	
 }

@@ -67,5 +67,15 @@ public class CourseServiceImpl implements CourseService {
 		return courseRepo.findByDate(fromDate, toDate);
 	}
 
+	@Override
+	public List<Course> getByFees(int startFees, int endFees) {
+		return courseRepo.findByFees(startFees, endFees);
+	}
+
+	@Override
+	public List<Course> getByDuration(int startDuration, int endDuration) {
+		return courseRepo.findByDeration(startDuration, endDuration);
+	}
+
 
 }
