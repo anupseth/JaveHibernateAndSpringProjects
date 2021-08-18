@@ -1,18 +1,15 @@
 package com.cousemanageent.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Basic;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.NamedNativeQueries;
-import javax.persistence.NamedNativeQuery;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Past;
@@ -46,6 +43,9 @@ public class Course {
 	@Basic
 	@Temporal(TemporalType.DATE)
 	private Date courseInceptionDate;
+	
+	@OneToMany(mappedBy = "course")
+	private List<Review> review;
 	
 	public Course() {
 	}
@@ -134,6 +134,13 @@ public class Course {
 	}
 
 
-	
+	public List<Review> getReview() {
+		return review;
+	}
+
+
+	public void addReview(Review review) {
+		this.review.add(review);
+	}
 	
 }

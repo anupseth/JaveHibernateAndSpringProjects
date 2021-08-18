@@ -100,5 +100,21 @@ public class WebController {
 		course.setDuration(3);
 		return "SearchPages/SearchCourse";
 	}
+	
+	
+	@GetMapping("/seeCoursesReviews")
+	public String searchCourses() {
+		return "SeeReviews";
+	}
+	
+	
+	@GetMapping("/seeCoursesReviews/{id}")
+	public ModelAndView getReviewsForCourse(@PathVariable long id, ModelAndView model) {
+		Course retreiveCourse = courseService.retreiveCourse(id);
+		model.addObject("reviews", retreiveCourse.getReview());
+		model.setViewName("SeeReviews");
+		return model;
+	}
+	
 
 }
