@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cousemanageent.entity.Course;
+import com.cousemanageent.entity.Review;
 import com.cousemanageent.repository.CourseRepository;
+import com.cousemanageent.repository.ReviewRepository;
 
 @Service
 @Transactional
@@ -22,11 +24,13 @@ public class CourseServiceImpl implements CourseService {
 
 	@Autowired
 	private CourseRepository courseRepo;
+	
+	@Autowired
+	private ReviewRepository reviewRepo;
 
 	@Override
 	public Course saveCourse(Course course) {
 		Course coursefromrepo = null;
-		Course save = null;
 		logger.info(" ->>>>>>>>>>>>>>>>> Course Id :" + course.getId());
 		if (course.getId() > 0 && courseRepo.existsById(course.getId())) {
 			coursefromrepo = courseRepo.getById(course.getId());
@@ -77,6 +81,34 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public List<Course> getByDuration(int startDuration, int endDuration) {
 		return courseRepo.findByDeration(startDuration, endDuration);
+	}
+
+	@Override
+	public Review saveReview(Review review) {
+		Review reviewfromRepo = null;
+		logger.info(" ->>>>>>>>>>>>>>>>> Course Id :" + review.getId());
+		if (review.getId() > 0 && reviewRepo.existsById(review.getId())) {
+			reviewfromRepo = reviewRepo.getById(review.getId());
+			reviewfromRepo = review;
+			return reviewRepo.save(reviewfromRepo);
+		} else {
+			return reviewRepo.save(review);
+		}
+	}
+
+	@Override
+	public Review retreiveReview(long id) {
+		Optional<Review> review = reviewRepo.findById(id);
+		if (review.isPresent()) {
+			return review.get();
+		}
+		return null;
+	}
+
+	@Override
+	public void deleteReview(long id) {
+		reviewRepo.deleteById(id);
+		
 	}
 
 }

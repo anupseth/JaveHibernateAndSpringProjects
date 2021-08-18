@@ -5,6 +5,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -20,6 +21,9 @@ public class Review {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Course course;
+	
+	@Transient
+	private long courseId;
 	
 	public Review() {
 	}
@@ -64,6 +68,14 @@ public class Review {
 	@Override
 	public String toString() {
 		return "Review [id=" + id + ", description=" + description + "]";
+	}
+
+	public long getCourseId() {
+		return courseId;
+	}
+
+	public void setCourseId(long courseId) {
+		this.courseId = courseId;
 	}
 
 	

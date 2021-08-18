@@ -1,12 +1,13 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
 <link th:rel="stylesheet"
 	th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} " />
+
 </head>
 <body>
+
+
 
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
@@ -26,8 +27,8 @@
 							Course</a></li>
 					<li class="nav-item"><a class="nav-link" href="/searchCourses">Search
 							Course</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/seeCoursesReviews">Course Reviews</a></li>
+					<li class="nav-item"><a class="nav-link" href="/seeCoursesReviews">Course Reviews</a>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -35,49 +36,26 @@
 
 	<br />
 	<br />
-
-	<hr>
-
-	<h3 align="center">Course List</h3>
-
-
-
-	<table style="width: 100%">
-		<thead align="center">
+	<form action="#" th:action="@{/addReview}" th:object="${review}"
+		method="post">
+		<table style="width: 100%">
 			<tr>
-
-				<th>Course Name</th>
-				<th>Add Review</th>
+				<td>Description:</td>
+				<td><input type="text" th:field="*{description}" /></td>
+				<td th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
+					style="color: red;">Description Error</td>
 			</tr>
-		</thead>
-		<tbody align="center">
-			<tr th:each="course: ${session.courseList}">
-				<td><a th:href="@{/seeCoursesReviews/{id}(id = ${course.id})}"
-					th:text="${course.name}"> Delete </a></td>
-					
-					<td><a th:href="@{/addReviews/{id}(id = ${course.id})}"
-					> Add Reviews </a></td>
+			<tr style="display: none;">
+				<td>Course ID:</td>
+				<td><input type="number" th:field="*{courseId}" th:value="${review.courseId}" /></td>
+				<td th:if="${#fields.hasErrors('courseId')}" th:errors="*{courseId}"
+					style="color: red;">Description Error</td>
 			</tr>
-		</tbody>
-	</table>
-	<br>
-
-	<table style="width: 100%">
-		<thead align="center">
 			<tr>
-				<th>Review ID</th>
-				<th>Description</th>
+				<td align="center"><button type="submit">Submit</button></td>
 			</tr>
-		</thead>
-		<tbody align="center">
-			<tr th:each="review: ${reviews}">
-
-				<td th:text="${review.id}" />
-				<td th:text="${review.description}" />
-
-			</tr>
-		</tbody>
-	</table>
+		</table>
+	</form>
 
 	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 	<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>

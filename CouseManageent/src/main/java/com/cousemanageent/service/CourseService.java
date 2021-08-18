@@ -4,9 +4,11 @@ import java.util.Date;
 import java.util.List;
 
 import com.cousemanageent.entity.Course;
+import com.cousemanageent.entity.Review;
 
 public interface CourseService {
 	
+	//Course
 	public Course saveCourse(Course course);
 	
 	public Course retreiveCourse(long id);
@@ -22,4 +24,12 @@ public interface CourseService {
 	public List<Course> getByFees(int startFees, int endFees);
 	
 	public List<Course> getByDuration(int startDuration, int endDuration);
+	
+	//Reviews
+	
+	public Review saveReview(Review review);
+	
+	public Review retreiveReview(long id);
+	
+	public void deleteReview(long id);
 }

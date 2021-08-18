@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cousemanageent.entity.Course;
 import com.cousemanageent.entity.CourseStatus;
+import com.cousemanageent.entity.Review;
 import com.cousemanageent.service.CourseService;
 
 @Controller
@@ -114,6 +115,36 @@ public class WebController {
 		model.addObject("reviews", retreiveCourse.getReview());
 		model.setViewName("SeeReviews");
 		return model;
+	}
+	
+	
+	@GetMapping("/addReviews/{id}")
+	public String addReviewGet(@PathVariable long id, Model model) {
+		Course retreiveCourse = courseService.retreiveCourse(id);
+		Review review = new Review("", retreiveCourse);
+		model.addAttribute("review", review);
+		return "AddReviewForm";
+	}
+	
+	
+	@PostMapping("/addReview")
+	public String addReviewPost(@Valid Review review, BindingResult bindingResult, HttpSession session) {
+		
+		
+		if (bindingResult.hasErrors()) {
+			return "AddReviewForm";
+		}
+		
+		Course retreiveCourse = courseService.retreiveCourse(review.getCourseId());
+		review.setCourse(retreiveCourse);
+		logger.info(" *************************************" );
+//		logger.info("review  = "+ review.toString());
+//		logger.info("Review Course : "+ review.getCourse().toString());
+		
+
+		courseService.saveReview(review);
+
+		return "redirect:/seeCoursesReviews";
 	}
 	
 
